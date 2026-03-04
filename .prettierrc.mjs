@@ -22,5 +22,6 @@ export default {
     '^~/.*$',
     '^[.]',
   ],
+  endOfLine: 'lf',
   plugins: ['@ianvs/prettier-plugin-sort-imports'],
 };
