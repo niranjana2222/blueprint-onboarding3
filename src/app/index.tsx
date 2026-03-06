@@ -37,6 +37,14 @@ export default function App() {
     );
   }
 
+  if (postData.length === 0) {
+    return (
+      <View style={styles.centerContainer}>
+        <Text style={styles.loadingText}>No posts yet</Text>
+      </View>
+    );
+  }
+
   return (
     <ScrollView style={styles.container}>
       {postData.map((post, index) => (
@@ -48,7 +56,7 @@ export default function App() {
             state={post.state}
             text={post.text}
             image={post.image}
-            likeCount={post.like_count}
+            likeCount={post.likeCount}
           />
           {index < postData.length - 1 && <View style={styles.divider} />}
         </View>

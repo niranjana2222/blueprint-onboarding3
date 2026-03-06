@@ -23,7 +23,14 @@ export default function Post({
   image,
   likeCount,
 }: PostProps) {
-  const location = `${city}, ${state}`;
+  const location =
+    city && state
+      ? `${city}, ${state}`
+      : city
+        ? city
+        : state
+          ? state
+          : 'Unknown location';
 
   return (
     <View style={styles.postCard}>
