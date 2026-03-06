@@ -50,13 +50,13 @@ export default function App() {
       {postData.map((post, index) => (
         <View key={post.id ?? index}>
           <Post
-            username={post.username}
-            npo={post.npo}
-            city={post.city}
-            state={post.state}
-            text={post.text}
-            image={post.image}
-            likeCount={post.likeCount}
+            username={post.user_name}
+            npo={post.npo_name}
+            city=""
+            state=""
+            text={post.post_text}
+            image={post.image_ink ?? post.image_link ?? null}
+            likeCount={post.num_ike}
           />
           {index < postData.length - 1 && <View style={styles.divider} />}
         </View>

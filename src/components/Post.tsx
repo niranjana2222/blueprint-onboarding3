@@ -23,14 +23,7 @@ export default function Post({
   image,
   likeCount,
 }: PostProps) {
-  const location =
-    city && state
-      ? `${city}, ${state}`
-      : city
-        ? city
-        : state
-          ? state
-          : 'Unknown location';
+  const location = city && state ? `${city}, ${state}` : city || state || '';
 
   return (
     <View style={styles.postCard}>
@@ -40,7 +33,7 @@ export default function Post({
           <Text style={styles.username}>
             {username} at {npo}
           </Text>
-          <Text style={styles.location}>{location}</Text>
+          {location ? <Text style={styles.location}>{location}</Text> : null}
         </View>
       </View>
 
