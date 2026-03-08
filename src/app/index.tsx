@@ -1,17 +1,18 @@
-import type { Post as PostType } from '~/api/supabase/queries/query';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { getAllPosts } from '~/api/supabase/queries/query';
+import { getAllPostsWithDetails } from '~/api/supabase/queries/query';
 import Post from '../components/Post';
 
 export default function App() {
-  const [postData, setPostData] = useState<PostType[] | null>(null);
+  const [postData, setPostData] = useState<Awaited<
+    ReturnType<typeof getAllPostsWithDetails>
+  > | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchPostData() {
       try {
-        const data = await getAllPosts();
+        const data = await getAllPostsWithDetails();
         setPostData(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch posts');
@@ -48,15 +49,15 @@ export default function App() {
   return (
     <ScrollView style={styles.container}>
       {postData.map((post, index) => (
-        <View key={post.id ?? index}>
+        <View key={post.key ?? index}>
           <Post
-            username={post.user_name}
-            npo={post.npo_name}
-            city=""
-            state=""
-            text={post.post_text}
-            image={post.image_ink ?? post.image_link ?? null}
-            likeCount={post.num_ike}
+            username={post.username}
+            npo={post.npo}
+            city={post.city}
+            state={post.state}
+            text={post.text}
+            image={post.image}
+            likeCount={post.likeCount}
           />
           {index < postData.length - 1 && <View style={styles.divider} />}
         </View>
