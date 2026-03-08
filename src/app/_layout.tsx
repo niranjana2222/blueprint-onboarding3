@@ -6,7 +6,7 @@ import BpIcon from '../../assets/bp-icon.svg';
 function HeaderTitle() {
   return (
     <View style={styles.headerContainer}>
-      <BpIcon style={styles.logo} />
+      <BpIcon width={22} height={22} />
       <Text style={styles.headerText}>
         <Text style={styles.blueprint}>blueprint</Text> volunteers
       </Text>
@@ -14,19 +14,18 @@ function HeaderTitle() {
   );
 }
 
-function StackLayout() {
+export default function StackLayout() {
   return (
     <SafeAreaProvider>
       <Stack>
         <Stack.Screen
           name="index"
           options={{
-            headerShown: true,
             headerTitle: () => <HeaderTitle />,
             headerStyle: {
-              backgroundColor: '#fafafa',
+              backgroundColor: '#ffffff',
             },
-            headerShadowVisible: true,
+            headerShadowVisible: false,
           }}
         />
       </Stack>
@@ -38,24 +37,14 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 25,
-    height: 26,
-    marginRight: 16,
+    gap: 8,
   },
   headerText: {
-    fontFamily: 'Poppins',
     fontSize: 16,
     fontWeight: '600',
-    letterSpacing: -0.07,
     color: '#262626',
-    lineHeight: 18,
   },
   blueprint: {
     color: '#0078e8',
   },
 });
-
-export default StackLayout;
